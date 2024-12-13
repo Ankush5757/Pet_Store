@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    {% include 'header.html' %}
+    <div class="container mt-5 p-5 rounded" style="margin-top: 200px; background-color: white;">
+        <div class="row">
+
+            {% if carts %}
+            {% for cart in carts %}
+            <div class="col-md-4">
+
+                <div class="card mt-2" style="width: 18rem;">
+                    <img src="../../media/{{cart.pet.image}}" height="250px" class="card-img-top" alt="Pet images">
+                    <div class="card-body">
+                        <h5 class="card-title">Name: {{cart.pet.name}}</h5>
+                        <p class="card-text">Age: {{cart.pet.age}}</p>
+                        <p class="card-text">Breed: {{cart.pet.breed}}</p>
+                        <p class="card-text">Gender: {{cart.pet.gender}}</p>
+                        <p class="card-text">Price: {{cart.pet.price}}</p>
+                        <p class="card-text">Total Price: {{cart.total_price}}</p>
+
+
+                        <div style="display: flex;">
+                            <a href="/update_quantity/{{cart.id}}/minus/">
+                                <input type="button" value="-" class="btn-btn-danger" name="minus"></a>
+
+
+                            <input type="number" name="quantity" class="form-control" value="{{cart.quantity}}"
+                                style="width: 125px; margin-left: 25px;">
+
+                            <a href="/update_quantity/{{cart.id}}/plus/">
+                                <input type="button" value="+" class="btn btn-success" name="plus"
+                                    style="margin-left: 25px;"></a>
+                        </div>
+
+                        
+
+                        <div class="text-primary">
+                            <a href="/remove_pet/{{cart.id}}/" class="btn btn-primary mt-3">Remove</a>
+                            <a href="#" class="btn btn-danger mt-3">Buy</a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="card">
+                <h3>Cart is empty</h3>
+            </div>
+            {% endif %}
+
+            <div class="col-md-4" style="margin-top: 0px;">
+                <div class="container mb-5">
+                    <div class="mt-4 card p-4 text-success d-flex" style="background-color: #d4edda;">
+                        <h6> Total Price: <span id="grand-total">{{ grand_total }}</span> </h6>
+                        <button type="button" name="buy_all" class="btn btn-danger">Buy</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+    {% include 'footer.html' %}
+
+</body>
+
+</html>

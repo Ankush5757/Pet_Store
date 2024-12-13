@@ -1,0 +1,12 @@
+<h1>Welcome to Our Pet Store</h1>
+
+<p>Check out our selection of pets.</p>
+
+<!-- Link to the expensive pets page -->
+<a href="{% url 'expensive_pets' %}">Show Expensive Pets</a>
+
+<ul>
+    {% for pet in all_pets %}
+        <li>{{ pet.name }} - {{ pet.price }} RS</li>
+    {% endfor %}
+</ul>

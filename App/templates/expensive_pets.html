@@ -1,0 +1,30 @@
+<div class="container mt-5">
+    <table class="table table-bordered table-hover" style="border-width: 2px;">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col" class="text-center">Photo</th>
+                <th scope="col" class="text-center">Name</th>
+                <th scope="col" class="text-center">Price (RS)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pet in pets %}
+                <tr>
+                    <td class="text-center" style="width: 200px;">
+                        {% if pet.image %}
+                            <img src="{{ pet.image.url }}" alt="{{ pet.name }}" style="height: 200px; width: 200px;">
+                        {% else %}
+                            <img src="https://via.placeholder.com/100" alt="No Image Available" style="max-height: 100px; max-width: 100%;">
+                        {% endif %}
+                    </td>
+                    <td class="text-center">{{ pet.name }}</td>
+                    <td class="text-center">{{ pet.price }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="3" class="text-center">No expensive pets available.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
